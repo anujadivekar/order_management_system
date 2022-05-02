@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4 mx-auto">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="my-3">
+                        <input type="text" class="form-control" placeholder="Enter name"
+                            aria-label="username" #userName aria-describedby="basic-addon2" id="userName" required>
+                    </div>
+                    <div class="my-3">
+                        <input type="text" class="form-control" placeholder="Enter address"
+                            aria-label="address" #address aria-describedby="basic-addon2" id="address" required>
+                    </div>
+                    <div class="my-3">
+                        <input type="text" class="form-control" placeholder="Enter phone no"
+                            aria-label="phoneNo" #phoneNo aria-describedby="basic-addon2" id="phoneNo" required>
+                    </div>
+                    <div class="my-3">
+                        <input type="password" class="form-control" placeholder="Enter password"
+                            aria-label="password" aria-describedby="basic-addon2" id="password" required>
+                    </div>
+                    <div class="text-center my-3">
+                        <button type="submit" class="btn btn-primary"
+                        (click)="register(userName.value,address.value,phoneNo.value)">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

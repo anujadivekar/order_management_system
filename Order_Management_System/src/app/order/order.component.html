@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 mx-auto">
+            <div class="card mt-3">
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Customer Name</td>
+                                <td>{{currentUser.name}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Customer Address</td>
+                                <td>{{currentUser.address}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Customer Mob</td>
+                                <td>{{currentUser.phoneNo}}</td>
+                            </tr>
+
+                        </tbody>
+                        <tbody *ngFor="let i of currentUser.order;let ind = index">
+                            <tr>
+                                <th scope="row">{{ind+4}}</th>
+                                <td>Order Number</td>
+                                <td>{{i.orderNo}}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Order Item</td>
+                                <td>{{i.orderItem}}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"></th>
+                                <td>Order Due Date</td>
+                                <td>{{i.orderDueDate}}</td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row"></th>
+                                <div class="justify-content-center w-262 text-center">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal" (click)="getOrderDetails(ind)">Edit</button>
+                                    <button type="submit" class="btn btn-primary mx-2"
+                                        (click)="deleteRecord(ind)">Delete</button>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="text-center">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal2">Place New Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Order Id" aria-label=""
+                        [value]="currentOrderDetails.orderNo" aria-describedby="basic-addon1" disabled>
+                </div>
+                <select class="form-select" aria-label="Default select example" id="product">
+                    <option *ngFor="let item of productList" [value]="item">{{item}}</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="editRecord(currentOrderDetails.orderNo)"
+                    data-bs-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Place Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Please select product:
+                <select class="form-select" aria-label="Default select example" id="newProduct">
+                    <option *ngFor="let item of productList" [value]="item">{{item}}</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="placeOrder()"
+                    data-bs-dismiss="modal">Place</button>
+            </div>
+        </div>
+    </div>
+</div>
